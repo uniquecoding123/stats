@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Statistics</title>
+    <style>
+           <style>
+           body{
+           background-color: honeydew;
+           }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: honeydew;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #008080;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #008080;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            display: block;
+    width: 70px;
+    margin-left: 50%;
+    margin-top: 25px;
+                padding: 10px;
+            background-color: #008080;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #005656;
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <h1>Team Statistics</h1>
+    <table border="1">
+        <tr>
+            <th>Team</th>
+            <th>Win1</th>
+            <th>Draws</th>
+            <th>Win2</th>
+            <th>Matches</th>
+        </tr>
+        {% for team in teams %}
+        <tr>
+            <td>{{ team.name }}</td>
+            <td>{{ team.wins }}</td>
+            <td>{{ team.draws }}</td>
+            <td>{{ team.losses }}</td>
+            <td>{{ team.total_marks }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <br>
+    <h1>winning percentage</h1>
+      <table border="1">
+        <tr>
+            <th>Team</th>
+            <th>Win1</th>
+            <th>Draws</th>
+            <th>Win2</th>
+        </tr>
+        {% for team in teams %}
+        <tr>
+            <td>{{ team.name }}</td>
+            <td>{{ ((team.wins/team.total_marks)*100)|int }}</td>
+            <td>{{ ((team.draws/team.total_marks)*100)|int }}</td>
+            <td>{{ ((team.losses/team.total_marks)*100)|int }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('add_team') }}">Add Team</a>
+<a href="{{ url_for('clear_db') }}">clear db</a>
+</body>
+</html>
+
